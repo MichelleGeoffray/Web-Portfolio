@@ -1,0 +1,151 @@
+@charset "utf-8";
+
+html, body, h1, form, fieldset, legend, ol, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff;
+    color: #111111;
+    font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+    padding: 20px;
+}
+
+#nav {
+    position: absolute;
+    top: 10px;
+    padding-left: 580px;
+}
+
+h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+form#moodTracker {
+    background: #a0bbc6;
+    border-radius: 5px;
+    counter-reset: fieldsets;
+    padding: 20px;
+    width: 700px;
+}
+
+form#moodTracker fieldset {
+    border: none;
+    margin-bottom: 10px;
+}
+
+form#moodTracker fieldset:last-of-type {
+    margin-bottom: 0;
+}
+
+form#moodTracker legend {
+    color: #455156;
+    font-size: 16px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-shadow: 0 1px 1px #333b3f;
+}
+
+span#progress {
+    color: #455156;
+    font-size: 14px;
+    padding-bottom: 10px;
+}
+
+form#moodTracker > fieldset > legend:before {
+    content: "Step " counter(fieldsets) ": ";
+    counter-increment: fieldsets;
+}
+
+form#moodTracker fieldset fieldset legend {
+    color: #111111;
+    font-size: 13px;
+    font-weight: normal;
+    padding-bottom: 5px;
+}
+
+form#moodTracker ol li {
+    background: #b9cf6a;
+    background: rgba(255,255,255,.3);
+    border-color: #e3ebc3;
+    border-color: rgba(255,255,255,.6);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    line-height: 10px;
+    list-style: none;
+    padding: 5px 10px;
+    margin-bottom: 2px;
+}
+
+form#moodTracker ol ol li {
+    background: none;
+    border: none;
+    float: left;
+    
+}
+
+form#moodTracker label {
+    float: left;
+    font-size: 13px;
+    width: 170px;
+}
+
+form#moodTracker fieldset fieldset label {
+    background: none no-repeat left 50%;
+    line-height: 20px;
+    padding: 0 10px 0 10px;
+    width: auto;
+}
+
+form#moodTracker fieldset fieldset label:hover {
+    cursor: pointer;
+}
+
+form#moodTracker input:not([type=radio]),
+form#moodTracker textarea {
+    background: #ffffff;
+    border: none;
+    border-radius: 3px;
+    font: italic 13px Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+    outline: none;
+    padding: 5px;
+    width: 450px;
+}
+
+form#moodTracker input:not([type=submit]):focus,
+form#moodTracker textarea:focus {
+    background: eaeaea;
+}
+
+form#moodTracker input[type=radio] {
+    float: left;
+    margin-right: 5px;
+}
+
+form#moodTracker input[type=checkbox] {
+    width: 20px;
+    float: left;
+    margin-right: 0;
+}
+
+form#moodTracker button {
+    background: #333b3f;
+    border: none;
+    border-radius: 10px;
+    color: #ffffff;
+    display: block;
+    font: 18px Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+    letter-spacing: 1px;
+    margin: auto;
+    padding: 7px 25px;
+    text-shadow: 0 1px 1px #000000;
+    text-transform: uppercase;
+}
+
+form#moodTracker button:hover {
+    background: #1e2506;
+    cursor: pointer;
+}

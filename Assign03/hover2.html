@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>CGT 353 Assign03 Hover Part 2</title>
+        <style type="text/css">
+            div { width:100px; height:100px; border:1px solid #aaa; text-align:center; background-color:#eee;}
+            div#wrapper { position:absolute; top:50px; left:20px; width:810px; height:350px;}
+            div#th1  { position: absolute; top:60px;  left:30px;  background:url(images/1a.jpg) no-repeat center;}
+            div#th2  { position: absolute; top:60px;  left:160px; background:url(images/2a.jpg) no-repeat center;}
+            div#th3  { position: absolute; top:60px;  left:290px; background:url(images/3a.jpg) no-repeat center;}
+            div#th4  { position: absolute; top:60px;  left:420px; background:url(images/4a.jpg) no-repeat center;}
+            div#th5  { position: absolute; top:60px;  left:550px; background:url(images/5a.jpg) no-repeat center;}
+            div#th6  { position: absolute; top:60px;  left:680px; background:url(images/6a.jpg) no-repeat center;}
+            div#th7  { position: absolute; top:190px; left:30px;  background:url(images/7a.jpg) no-repeat center;}
+            div#th8  { position: absolute; top:190px; left:160px; background:url(images/8a.jpg) no-repeat center;}
+            div#th9  { position: absolute; top:190px; left:290px; background:url(images/9a.jpg) no-repeat center;}
+            div#th10 { position: absolute; top:190px; left:420px; background:url(images/10a.jpg) no-repeat center;}
+            div#th11 { position: absolute; top:190px; left:550px; background:url(images/11a.jpg) no-repeat center;}
+            div#th12 { position: absolute; top:190px; left:680px; background:url(images/12a.jpg) no-repeat center;}
+            div#links {position:absolute; top:430px; left:20px; width:810px; height:30px;}
+        </style>
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="th1"></div>
+            <div id="th2"></div>
+            <div id="th3"></div>
+            <div id="th4"></div>
+            <div id="th5"></div>
+            <div id="th6"></div>
+            <div id="th7"></div>
+            <div id="th8"></div>
+            <div id="th9"></div>
+            <div id="th10"></div>
+            <div id="th11"></div>
+            <div id="th12"></div>
+        </div>
+        <div id="links">
+            <a href="hover.html">Hover Part 1</a>
+            <a href="hoverAndClick.html">Hover and Click</a>
+            <a href="showHide.html">Show Hide</a>
+            <a href="hover2.html">Hover Part 2</a>
+        </div>
+        <script src="js/jquery-3.7.1.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                //this rounds the corners
+                //normal CSS would be: border-radius: 10px;
+                $("div").css("border-radius", "10px");
+
+                //$("div").css("-moz-border-radius", "10px");
+
+                //first line sets default opacity to .6
+                //if you just use ("div") here, the outer rectangle changes opacity
+                //added: id != 'wrapper'
+                //so that all div except the one with id=wrapper will have this effect
+                $("div[id!='wrapper']").animate({"opacity" : .5}).hover(function() {
+                    //runs if mouse IS over pic
+                    //MouseOver
+                    $(this).animate({"opacity" : 1});
+                }, function() {
+                    //runs if mouse is not over pic
+                    //MouseOut
+                    $(this).animate({"opacity" : .5});
+                });
+            }); //end ready event
+             
+        </script>
+    </body>
+</html>

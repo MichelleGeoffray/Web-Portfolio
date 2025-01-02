@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Assign02 - Page 2</title>
+        <link rel="stylesheet" href="css/styles2.css" type="text/css" />
+        <script type="text/javascript">
+            function updateProgress() {
+                var pb = document.getElementById("pb");
+                var cnt = 0;
+                if (document.getElementById("entryDate").value != "")
+                    cnt++;
+                if (document.getElementById("moodIntensity").value != "")
+                    cnt++;
+                if ((document.getElementById("sleepAmount").value != "Select Amount") && (document.getElementById("sleepAmount").value != ""))
+                    cnt++;
+                if (document.getElementById("activities").value != "")
+                    cnt++;
+                if (document.getElementById("journalEntry").value != "")
+                    cnt++;
+                if (document.getElementById("goals").value != "")
+                    cnt++;
+                if (document.getElementById("dayRating").value != "")
+                    cnt++;
+
+
+                var flag = false;
+
+                if (document.getElementById("happy").checked)
+                    flag = true;
+                else if (document.getElementById("sad").checked)
+                    flag = true;
+                else if (document.getElementById("anxious").checked)
+                    flag = true;
+                else if (document.getElementById("calm").checked)
+                    flag = true;
+                else if (document.getElementById("angry").checked)
+                    flag = true;
+                else
+                    flag = false;
+
+                if (flag == true)
+                    cnt++;
+
+
+                flag = false;
+
+                if (document.getElementById("low").checked)
+                    flag = true;
+                else if (document.getElementById("medium").checked)
+                    flag = true;
+                else if (document.getElementById("high").checked)
+                    flag = true;
+                else
+                    flag = false;
+
+                if (flag == true)
+                    cnt++;
+
+
+                flag = false;
+
+                if (document.getElementById("poor").checked)
+                    flag = true;
+                else if (document.getElementById("fair").checked)
+                    flag = true;
+                else if (document.getElementById("good").checked)
+                    flag = true;
+                else if (document.getElementById("excellent").checked)
+                    flag = true;
+                else
+                    flag = false;
+
+                if (flag == true)
+                    cnt++;
+
+
+                flag = false;
+
+                if (document.getElementById("joyMain").checked)
+                    flag = true;
+                else if (document.getElementById("angerMain").checked)
+                    flag = true;
+                else if (document.getElementById("fearMain").checked)
+                    flag = true;
+                else if (document.getElementById("sadnessMain").checked)
+                    flag = true;
+                else if (document.getElementById("loveMain").checked)
+                    flag = true;
+                else
+                    flag = false;
+
+                if (flag == true)
+                    cnt++;
+
+
+                flag = false;
+
+                if (document.getElementById("yes").checked)
+                    flag = true;
+                else if (document.getElementById("no").checked)
+                    flag = true;
+                else
+                    flag = false;
+
+                if (flag == true)
+                    cnt++;
+
+
+
+
+                pb.value = cnt;
+            } //updateProgress
+        </script>
+    </head>
+
+<body>
+    <h1>Mood Tracker Form</h1>
+    <div id="nav"><a href="Assign02.html">Page 1</a></div>
+    <div style="margin-left: 190px;">
+        <span id="progress">Progress:</span><progress value="0" max="12" id="pb"></progress><br/>&nbsp;
+    </div>
+    <form name="moodTracker" id="moodTracker" action="processMoodForm.php" method="post">
+        <fieldset>
+            <legend>Mood Information</legend>
+            <ol>
+                <li>
+                    <label for="entryDate">Date of Entry</label>
+                    <input id="entryDate" name="entryDate" type="date" required="required" onchange="updateProgress();" />
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>Overall Mood</legend>
+                        <ol>
+                            <li>
+                                <input id="happy" name="overallMood" type="radio" onchange="updateProgress();" />
+                                <label for="happy">Happy</label>
+                            </li>
+                            <li>
+                                <input id="sad" name="overallMood" type="radio" onchange="updateProgress();" />
+                                <label for="sad">Sad</label>
+                            </li>
+                            <li>
+                                <input id="anxious" name="overallMood" type="radio" onchange="updateProgress();" />
+                                <label for="anxious">Anxious</label>
+                            </li>
+                            <li>
+                                <input id="calm" name="overallMood" type="radio" onchange="updateProgress();" />
+                                <label for="calm">Calm</label>
+                            </li> 
+                            <li>
+                                <input id="angry" name="overallMood" type="radio" onchange="updateProgress();" />
+                                <label for="angry">Angry</label>
+                            </li>                            
+                        </ol>
+                    </fieldset>
+                </li>
+                <li>
+                    <label for="moodIntensity">Mood Intensity (1-10)</label>
+                    <input id="moodIntensity" name="moodIntensity" type="text" required="required" onchange="updateProgress();" />
+                </li>
+            </ol>
+        </fieldset>
+
+        <fieldset>
+            <legend>Sleep Information</legend>
+            <ol>
+                <li>
+                    <fieldset>
+                        <legend>Energy Level</legend>
+                        <ol>
+                            <li>
+                                <input id="low" name="energyLevel" type="radio" onchange="updateProgress();" />
+                                <label for="low">Low</label>
+                            </li>
+                            <li>
+                                <input id="medium" name="energyLevel" type="radio" onchange="updateProgress();" />
+                                <label for="medium">Medium</label>
+                            </li>
+                            <li>
+                                <input id="high" name="energyLevel" type="radio" onchange="updateProgress();" />
+                                <label for="high">High</label>
+                            </li>
+                        </ol>
+                    </fieldset>
+                </li>
+                <li>
+                    <label for="sleepAmount">Hours of Sleep</label>
+                    <select id="sleepAmount" name="sleepAmount" required="required" onchange="updateProgress();">
+                        <option value="">Select Amount</option>
+                        <option value="fiveBelow"> ≤ 5</option>
+                        <option value="six">6</option>
+                        <option value="seven">7</option>
+                        <option value="eight">8</option>
+                        <option value="ninePlus"> ≥ 9</option>
+                    </select>
+                </li>
+
+                <li>
+                    <fieldset>
+                        <legend>Sleep Quality</legend>
+                        <ol>
+                            <li>
+                                <input id="poor" name="sleepQuality" type="radio" onchange="updateProgress();" />
+                                <label for="poor">Poor</label>
+                            </li>
+                            <li>
+                                <input id="fair" name="sleepQuality" type="radio" onchange="updateProgress();" />
+                                <label for="fair">Fair</label>
+                            </li>
+                            <li>
+                                <input id="good" name="sleepQuality" type="radio" onchange="updateProgress();" />
+                                <label for="good">Good</label>
+                            </li>
+                            <li>
+                                <input id="excellent" name="sleepQuality" type="radio" onchange="updateProgress();" />
+                                <label for="excellent">Excellent</label>
+                            </li>
+                        </ol>
+                    </fieldset>
+                </li>
+            </ol>
+        </fieldset>
+
+        <fieldset>
+            <legend>Journal Information</legend>
+            <ol>
+                <li>
+                    <fieldset>
+                        <legend>Main Emotions</legend>
+                        <ol>
+                            <li><input id="joyMain" name="mainEmotion" type="checkbox" value="Joy" onchange="updateProgress();" /><label for="joyMain">Joy</label></li>
+                            <li><input id="angerMain" name="mainEmotion" type="checkbox" value="Anger" onchange="updateProgress();" /><label for="angerMain">Anger</label></li>
+                            <li><input id="fearMain" name="mainEmotion" type="checkbox" value="Fear" onchange="updateProgress();" /><label for="fearMain">Fear</label></li>
+                            <li><input id="sadnessMain" name="mainEmotion" type="checkbox" value="Sadness" onchange="updateProgress();" /><label for="sadnessMain">Sadness</label></li>
+                            <li><input id="loveMain" name="mainEmotion" type="checkbox" value="Love" onchange="updateProgress();" /><label for="loveMain">Love</label></li>
+                        </ol>
+                    </fieldset>
+                </li>
+                <li>
+                    <label for="activities">Activities Influencing Mood</label>
+                    <input id="activities" name="activities" type="text" required="required" onchange="updateProgress();" />
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>Exercise</legend>
+                        <ol>
+                            <li>
+                                <input id="yes" name="exercise" type="radio" onchange="updateProgress();" />
+                                <label for="yes">Yes</label>
+                            </li>
+                            <li>
+                                <input id="no" name="exercise" type="radio" onchange="updateProgress();" />
+                                <label for="no">No</label>
+                            </li>
+                        </ol>
+                    </fieldset>
+                </li>
+                <li>
+                    <label for="journalEntry">Journal Entry</label>
+                    <textarea id="journalEntry" name="journalEntry" rows="5" required="required" onchange="updateProgress();"></textarea>
+                </li>
+                <li>
+                    <label for="goals">Goals For Tomorrow</label>
+                    <textarea id="goals" name="goals" rows="3" required="required" onchange="updateProgress();"></textarea>
+                </li>
+                <li>
+                    <label for="dayRating">Rate Your Day (1-10)</label>
+                    <input id="dayRating" name="dayRating" type="text" required="required" onchange="updateProgress();" />
+                </li>
+                
+            </ol>
+        </fieldset>
+
+        <fieldset>
+            <button type="submit">Proceed</button>
+        </fieldset>
+    </form>
+
+</body>
+</html>

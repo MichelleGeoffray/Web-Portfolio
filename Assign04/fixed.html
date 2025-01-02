@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>CGT353 Assign04 - Fixed Side Bar, Flyout, and Ad Drop Down</title>
+        <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+        <style type="text/css">
+            body { background-color:#cca; }
+            #contactForm {
+                width: 400px;
+                height: 250px;
+                font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+                font-size: 9pt;
+                font-weight: bold;
+                position: absolute;
+                top: 250px;
+                left: -400px;
+                background-color: rgb(50, 50, 50);
+                background-color: rgba(50, 50, 50, .99);
+                margin: 0px;
+                z-index: 110;
+            }
+            #contact span {
+                padding: 0px;
+                margin: 0px;
+                position: relative;
+                top: 2px;
+            }
+            #contact {
+                font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+                font-size: 9pt;
+                font-weight: bold;
+                text-align: center;
+                padding-top: 17px;
+                padding-bottom: 0px;
+                padding-left: 3px;
+                padding-right: 3px;
+                position: absolute;
+                top: 350px;
+                left: -42px;
+                border-radius: 10px;
+                background-color: rgb(177,148,108);
+                background-color: rgba(177,148,108, .75);
+                width: 90px;
+                height: 25px;
+                margin: 0px;
+                z-index: 100;
+            }
+            #contact:hover,
+            #contact:focus {
+                background-color: rgb(177,148, 108);
+                background-color: rgba(177, 148, 108, .90);
+                cursor: pointer;
+            }
+            #contact.fixed,
+            #contactForm.fixed {
+                position: fixed;
+            }
+            .rotate {
+                transform: rotate(-90deg);
+                /* firefox */
+                /*-moz-transform: rotate(-90deg);*/
+                /* Chrome, Safari */
+                /*-webkit-transform: rotate(-90deg);*/
+                /* Microsoft */
+                /*-ms-transform: rotate(-90deg);*/
+                /* Opera */
+                /*-o-transform: rotate(-90deg);*/
+                /* Internet Explorer */
+                /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);*/
+            }
+            #dropdown {
+                position: absolute;
+                top: -150px;
+                left: 500px;
+                background-color: #ffffff;
+                padding: 20px;
+                border: 1px solid #000000;
+                z-index: 75;
+            }
+            #dropdown.fixed {
+                position: fixed;
+            }
+            #content1, #content2, #content3, #content4, #content5 {
+                position: absolute;
+                border-radius: 15px;
+                background-color: #A3A3A3;
+                width: 600px;
+                height: 300px;
+                overflow: hidden;
+                z-index: 1;
+            }
+            #content1 {
+                top: 100px;
+                left: 25px;
+            }
+            #content2 {
+                top: 100px;
+                left: 660px;
+            }
+            #content3 {
+                top: 425px;
+                left: 25px;
+            }
+            #content4 {
+                top: 425px;
+                left: 660px;
+            }
+            #content5 {
+                top: 750px;
+                left: 25px;
+                height: 700px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="dropdown">
+            Place Ad Content Here<br/><br/>
+            Will you take our quick survey?<br/><br/>
+            <a href="#" id="closeAd">Close</a>
+        </div>
+
+        <!-- contact me fixed flyout div -->
+        <div id="contact"><span>Contact Me</span></div>
+        <div id="contactForm">
+            <div id="contactClose" style="position:relative; text-align:center; width:15px; left:375px; top:5px;
+                                          border:1px solid #dddddd; padding:1px; color:#dddddd; cursor:pointer;">X</div>
+            <div id="contactAddress" style="position:relative; width:325px; left:45px; top:5px; padding:1px; color:#dddddd;">
+                Mia Geoffray<br />&nbsp;<br /> <!-- your info goes here -->
+                mgeoffra@purdue.edu<br />&nbsp;<br />
+                Purdue University<br />
+                West Lafayette, IN 47906
+            </div>
+        </div>
+        <!-- end contact me fixed flyout div -->
+
+        <h3>Assign04 - Fixed Side Bar, Flyout, and Ad Drop Down</h3>
+        <p>
+            <a href="fixed.html">Fixed Part 1</a> |
+            <a href="fixedPart2.html">Fixed Part 2</a> |
+            <a href="movingAd.html">Moving Ad</a> |
+            <a href="movingBall.html">Moving Ball</a> |
+            <a href="bouncingBall.html">Bouncing Balls</a>
+        </p>
+
+        <!-- add JQuery here -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                //rotate the text
+                $("#contact").addClass("rotate");
+
+                //when the window scrolls, prevent the contact div from scrolling
+                $(window).scroll(function (event) {
+                    //add the fixed class to the contact div
+                    $("#contact").addClass("fixed");
+                }); //end scroll
+
+                //drop the dropdown div down onto the screen
+                $("#dropdown").animate({
+                    top:"+=400"
+                }, 2000);
+
+                $("#dropdown").addClass("fixed");
+
+                //close the dropdown div
+                $("#closeAd").click(function(event){
+                    //prevent the default functionality
+                    event.preventDefault();
+
+                    //move the drop down back off the screen
+                    $("#dropdown").css("top", "-150px");
+                }); //end <a> click
+
+                ////////////////////////////////
+                //contact me fixed side bar
+                ////////////////////////////////
+                var isShowing = 1;                  //variable to know if the idv is showing on page
+                
+                $("#contact").addClass("rotate");   //rotate the div using CSS class .rotate
+                
+                var ie = $.browser == "msie" && $.browser.version < 7;
+
+                //exclude really old browsers
+                if (!ie) {
+                    $(window).scroll(function(event) {
+                        $("#contact").addClass("fixed");
+                    }); //end scroll
+                } // end if
+
+                //when contact me is clicked
+                $("#contact").click(function(e) {
+                    e.preventDefault();
+
+                    if (isShowing%2) {
+                        //executes every time isShowing is an odd number
+                        //bring the div onto the screen, into view
+                        $("#contact").animate({
+                            left:"+=400"
+                        }, 700);
+                        $("#contactForm").animate({
+                            left:"+=400"
+                        }, 700);
+
+                        $("#contact").addClass("fixed");
+                        $("#contactForm").addClass("fixed");
+
+                        $("#contact").css("background-color", "rgba(177, 148, 108, .95)");
+
+                        isShowing++; //ass 1 to isShowing: isShowing = isShowing + 1
+                    } else {
+                       //executes every time isShowing is an even number
+                       //move it off of the screen, out of view 
+                       $("#contact").animate({
+                            left:"-=400"
+                        }, 700);
+                        $("#contactForm").animate({
+                            left:"-=400"
+                        }, 700);
+
+                        $("#contact").css("background-color","rgba(177, 148, 108, .75)");
+
+                        isShowing++ //add 1 to isShowing: isShowing = isShowing + 1
+                    } //end if else for the modulus operator
+
+                }); //end contact click
+
+                //when the X is clicked
+                $("#contactClose").click(function(e) {
+                    e.preventDefault();
+
+                    $("#contact").animate({
+                            left:"-=400"
+                    }, 700);
+                    $("#contactForm").animate({
+                        left:"-=400"
+                    }, 700);
+
+                    $("#contact").css("background-color","rgba(177, 148, 108, .75)");
+
+                    isShowing++; //add 1 to isShowing: isShowing = isShowing + 1
+
+                }); //end close X click
+
+                ////////////////////////////////
+                //end contact me fixed side bar
+                ////////////////////////////////
+
+            }); //end document ready
+        </script>
+            
+        <div id="content1">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id="content2">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id="content3">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id="content4">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id="content5">
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+            <p>asdfasdf</p>
+        </div>
+
+    </body>
+</html>

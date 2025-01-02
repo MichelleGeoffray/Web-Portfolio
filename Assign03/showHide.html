@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Assign03 Show Hide</title>
+        <style type="text/css">
+            div { width:150px; height:200px; border:1px solid#aaa; text-align:center; background-color:#eee;}
+            div#links {position:absolute; top:530px; left:20px; width:750px; height:30px;}
+            #cutepuppy {width:250px; height:30px;}
+            #fluffycat {width:250px; height:30px;}
+        </style>
+    </head>
+    <body>
+        <img src="images/1.jpg"/>
+        <img src="images/2.jpg"/>
+        <img src="images/3.jpg"/>
+        <img src="images/4.jpg" id="wetfish"/>
+        <img src="images/5.jpg"/>
+        <img src="images/6.jpg"/>
+        <img src="images/7.jpg"/>
+        <img src="images/8.jpg"/>
+
+        <div id="links">
+            <a href="hover.html">Hover Part 1</a>
+            <a href="hoverAndClick.html">Hover and Click</a>
+            <a href="showHide.html">Show Hide</a>
+            <a href="hover2.html">Hover Part 2</a>
+        </div>
+
+        <div id="cutepuppy">Hide Images</div>
+        <div id="fluffycat">Show Images</div>
+
+        <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#cutepuppy").css("cursor", "pointer");
+                $("#fluffycat").css("cursor", "pointer");
+
+                $("#cutepuppy").click(function(){
+                    $("#wetfish").hide(1000);
+                });
+                
+                $("#fluffycat").click(function(){
+                    $("#wetfish").show(1000);
+                });
+            });
+        </script>
+
+    </body>
+</html>
