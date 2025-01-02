@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Page 2</title>	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/master.css">
+    
+</head>
+<body>
+    <div class="container-fluid bg-dark ">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-sm navbar-dark ps-2">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                        <li class="nav-item">
+                        <a class="nav-link" href="Assign01.html">Page 1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="p2.html">Page 2</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="p3.html">Page 3</a>
+                        </li>
+                </ul>
+            </div>
+        </nav>
+    </div> <!-- container-fluid-->
+
+    <div class="container-fluid p-5 bg-primary text-white text-center">
+        <h1>Page 2</h1>
+        <p>-Table-</p>
+    </div>
+
+    <!--
+    Create a page that contains a table of at least 5 columns and at least 10 rows.
+    Have at least one spanning column somewhere.
+    Have at least one spanning row somewhere.
+    Include at least 3 images either within or outside the table.
+    Make use of tbody, thead, tfoot.
+    -->
+
+    <div class="container mt-5">
+
+        <h3>Top Universities in the US</h3>
+        <br>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Ranking</th>
+                <th>School</th>
+                <th>Population</th>
+                <th>Tuition and Fees</th>
+                <th>Acceptance Rate</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><img src="images/princeton.png" alt="Princeton Logo" width="30"> Princeton University</td>
+                    <td>30,377</td>
+                    <td>$59,710</td>
+                    <td>4%</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><img src="images/mit.png" alt="MIT Logo" width="30"> Massachusetts Institute of Technology</td>
+                    <td>11,376</td>
+                    <td>$60,156</td>
+                    <td>4%</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">3 (tie)</td>
+                    <td><img src="images/harvard.jpg" alt="Harvard Logo" width="30"> Harvard University</td>
+                    <td>22,947</td>
+                    <td>$59,076</td>
+                    <td>3.2%</td>
+                </tr>
+                <tr>
+                    <td><img src="images/stanford.png" alt="Stanford Logo" width="30"> Stanford University</td>
+                    <td>16,914</td>
+                    <td>$62,484</td>
+                    <td>4%</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><img src="images/yale.jpg" alt="Yale Logo" width="30"> Yale University</td>
+                    <td>14,776</td>
+                    <td>$64,700</td>
+                    <td>3.7%</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><img src="images/upenn.png" alt="UPenn Logo" width="30"> University of Pennsylvania</td>
+                    <td>28,711</td>
+                    <td>$66,104</td>
+                    <td>5.4%</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">7 (tie)</td>
+                    <td><img src="images/caltech.png" alt="Caltech Logo" width="30"> California Institute of Technology</td>
+                    <td>2,238</td>
+                    <td>$63,255</td>
+                    <td>2.7%</td>
+                </tr>
+                <tr>
+                    <td><img src="images/duke.jpg" alt="Duke Logo" width="30"> Duke University</td>
+                    <td>18,009</td>
+                    <td>$66,172</td>
+                    <td>6.3%</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">9 (tie)</td>
+                    <td><img src="images/brown.jpg" alt="Brown Logo" width="30"> Brown University</td>
+                    <td>8,848</td>
+                    <td>$68,230</td>
+                    <td>5.1%</td>
+                </tr>
+                <tr>
+                    <td><img src="images/johns.jpg" alt="Johns Hopkins Logo" width="30"> Johns Hopkins University</td>
+                    <td>23,917</td>
+                    <td>$63,340</td>
+                    <td>7.3%</td>
+                </tr>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Averages:</th>
+                        <th>17,811</th>
+                        <th>$63,323</th>
+                        <th>4.57%</th>
+                    </tr>
+                </tfoot>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
