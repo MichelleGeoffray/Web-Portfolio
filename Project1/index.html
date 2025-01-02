@@ -1,0 +1,713 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Mia Geoffray Project 1 - Character Creation Machine</title>
+
+    <script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
+
+    <style type="text/css">
+        #top { position:absolute; top:0px; left:0px; width:1450px; height:200px; background-color:#17063c;}
+        #bottom { position:absolute; top:1450px; left:0px; width:1450px; height:200px; background-color:#17063c;}
+        
+        #left { position:absolute; top:100px; left:0px; width:220px; height:1450px; background-color:#bbb; background:url(images/leftBan.jpg) no-repeat center; padding:0px; padding-left:5px; border: 5px solid black;}
+        #middle { position:absolute; top:200px; left:234.5px; width:981px; height:1300px; background-color:#250f6f; padding-top:15px;}
+        #right { position:absolute; top:100px; left:1215.5px; width:220px; height:1450px; background-color:#bbb; background:url(images/rightBan.jpg) no-repeat center; padding:0px; padding-right:5px; border: 5px solid black;}
+        
+        h1 { color:white; font-size:50px; text-align:center;}
+        h3 { color:#b1b5fb; background-color: #2c2b74; font-size:25px; font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;}
+        h5 { color:#2c2b74; background-color: #b1b5fb; font-size:20px; font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;}
+        ul { list-style:none;}
+        li { text-decoration:underline; color:#39f; font-size:18px; cursor:pointer;}
+
+        #midTop { position:absolute; left:15px; width:951px; height:150px; background-color:#2c2b74; color:#ccc;}
+        #midMain { position:absolute; left:15px; top:170px; width:951px; height:1000px; background-color:#b1b5fb; border-radius:10px;}
+        #midBottom { position:absolute; left:15px; top:1150px; width:951px; height:150px; background-color:#2c2b74;}
+
+        #bannerImg1 {position:absolute; top:0px; left:0px; width:1450px; height:50px; background:url(images/bannerTop.png) no-repeat center;}
+        #bannerImg2 {position:absolute; top:150px; left:0px; width:1450px; height:50px; background:url(images/bannerBottom.png) no-repeat center;}    
+
+        #moreForm {
+            width: 380px;
+            height: 500px;
+            position: fixed;
+            top: 250px;
+            left: -400px;
+            background-color: rgb(228, 223, 239);
+            margin: 0px;
+            z-index: 110;
+            border: 5px outset #fed3ff;
+        }
+        #more span {
+            padding: 0px;
+            margin: 0px;
+            position: relative;
+            top: 2px;
+        }
+        #more {
+            font-family: Gotham, "Helvetica Neue", Helvetica, Arial, "sans-serif";
+            font-size: 14pt;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 17px;
+            padding-bottom: 0px;
+            padding-left: 3px;
+            padding-right: 3px;
+            position: fixed;
+            top: 300px;
+            left: -50px;
+            border-radius: 10px;
+            background-color:#fed3ff;
+            width: 90px;
+            height: 25px;
+            margin: 0px;
+            z-index: 100;
+            border: 5px solid black;
+        }
+
+        #more:hover, #more:focus {
+            background-color: rgb(254, 211, 255);
+            background-color: rgba(254, 211, 255, 0.90);
+            cursor: pointer;
+        }
+
+        #ads.fixed, #main.fixed, #mainForm.fixed, #nav.fixed { 
+            position: fixed;
+        }
+
+        .rotate { transform: rotate(-90deg);}
+
+        .hov1 { width:300px; height:300px; border:5px solid black; text-align:center; background-color:white;}
+        #wrapper1 {position:absolute; top:0px; width:951px; height:1000px; background-color: #b1b5fb;}
+        #cText { position:absolute; top:40px; left:80px; background:url(images/text1.png) no-repeat center; background-size:cover; background-color:white;}
+        #hText { position:absolute; top:330px; right:80px; background:url(images/text2.png) no-repeat center; background-size:cover; background-color:white;}
+        #rText { position:absolute; top:620px; left:80px; background:url(images/text3.png) no-repeat center; background-size:cover; background-color:white;}
+        
+        .hov2 { width:250px; height:250px; border:5px dashed black; text-align:center; background-color: white;}
+        #wrapper2 {position:absolute; top:0px; width:951px; height:1000px; background-color: #b1b5fb;}
+        #c1 { position:absolute; top:40px; left:150px; background:url(images/c1.png) no-repeat center; background-size:cover; background-color:white;}
+        #c2 { position:absolute; top:40px; right:150px; background:url(images/c2.png) no-repeat center; background-size:cover; background-color:white;}
+        #c3 { position:absolute; top:330px; left:150px; background:url(images/c3.png) no-repeat center; background-size:cover; background-color:white;}
+        #c4 { position:absolute; top:330px; right:150px; background:url(images/c4.png) no-repeat center; background-size:cover; background-color:white;}
+        #c5 { position:absolute; top:620px; left:150px; background:url(images/c5.png) no-repeat center; background-size:cover; background-color:white;}
+        #c6 { position:absolute; top:620px; right:150px; background:url(images/c6.png) no-repeat center; background-size:cover; background-color:white;}
+
+        .hov3 { width:250px; height:250px; border:5px dashed black; text-align:center; background-color:white;}
+        #wrapper3 {position:absolute; top:0px; width:951px; height:1000px; background-color: #b1b5fb;}
+        #hat1 { position:absolute; top:40px; left:150px; background:url(images/hat1.png) no-repeat center; background-size:cover; background-color:white;}
+        #hat2 { position:absolute; top:40px; right:150px; background:url(images/hat2.png) no-repeat center; background-size:cover; background-color:white;}
+        #hat3 { position:absolute; top:330px; left:150px; background:url(images/hat3.png) no-repeat center; background-size:cover; background-color:white;}
+        #hat4 { position:absolute; top:330px; right:150px; background:url(images/hat4.png) no-repeat center; background-size:cover; background-color:white;}
+        #hat5 { position:absolute; top:620px; left:150px; background:url(images/hat5.png) no-repeat center; background-size:cover; background-color:white;}
+        #hat6 { position:absolute; top:620px; right:150px; background:url(images/hat6.png) no-repeat center; background-size:cover; background-color:white;}
+
+        #slider { width:951px;} /* 670px originally */
+
+        .container{
+        display:block;
+        width:731px; /* 20px smaller than slider width*/
+        height:350px;
+        margin:20px auto 80px auto;
+        position:absolute;
+        left:110px;
+        top:200px;
+        background:url(images/slider_bg.png) no-repeat center;
+        }
+
+        .image_wrapper{
+        width:650px;
+        height:350px;
+        overflow:hidden;
+        position:relative;
+        margin:0 auto;
+        }
+
+        .image_wrapper img { position:absolute; left:10px; top:10px;}
+
+        .prev, .next {
+        width:30px;
+        height:59px;
+        position:absolute;
+        top:50%;
+        margin-top:-40px;
+        cursor:pointer;
+        opacity:0.5;
+        }
+
+        .prev { background:transparent url(images/prev.png) no-repeat top center; left:55px;}
+
+        .next { background:transparent url(images/next.png) no-repeat top center; right:55px;}
+
+        .prev:hover, .next:hover { opacity:0.9;}
+
+        ul.nav {
+        list-style:none;
+        padding:0;
+        width:140px;
+        margin:20px auto;
+        position:relative;
+        }
+
+        ul.nav li{ float:left;}
+
+        ul.nav li a{
+        display:block;
+        text-indent:-9000px;
+        width:13px;
+        height:13px;
+        outline:none;
+        padding:0px 3px;
+        background:transparent url(images/dot2.png) no-repeat top center;
+        }
+
+        ul.nav li a:hover, ul.nav li.selected a{ background-position:50% -13px;}
+
+        ul.nav li.preview{
+        display:none;
+        width:85px;
+        height:91px;
+        top:-95px;
+        left:-34.5px;
+        position:absolute;
+        }
+
+        ul.nav li.preview span { background:transparent url(images/triangle.png) no-repeat top center; width:15px; height:6px; position:absolute; top:85px; left:35px;}
+
+        .preview_wrapper { width:75px; height:75px; z-index:4; border:5px solid #fff; overflow:hidden; position:relative; -webkit-box-shadow:0px 0px 5px #999; -moz-box-shadow:0px 0px 5px #999; box-shadow:0px 0px 5px #999;}
+
+        .preview_wrapper img { position:absolute; top:0px; left:0px;}
+
+        #pic2 { left:660px;}
+
+        #pic3 { left:1310px;}
+
+        #pic4 { left:1960px;}
+
+        #pic5 { left:2610px;}
+
+        #pic6 { left:3260px;}
+
+        .bothLayered { width:260px; height:260px; position:absolute; left:50%; top:42%; transform: translate(-50%, -50%); z-index:2; background-size:cover;}
+
+        .layeredCharacter { width:230px; height:230px; position:absolute; left:50%; top:43%; transform: translate(-50%, -50%); z-index:2; background-size:cover;}
+
+        .layeredHat { width:150px; height:150px;  position:absolute; left:50%; top:32.5%; transform: translate(-50%, -50%); z-index:3; background-size:cover;}
+
+        button { text-align:center; font-size:40px; font-weight:bold; background-color:#90fcff; cursor: pointer; padding: 15px 32px; position:absolute; left:330px; top:700px; border: double 10px black;}
+
+    </style>
+</head>
+
+<body>
+    <div id="top"></div>
+    <div id="bottom"></div>
+    <div id="middle"></div>
+    <div id="left"></div>
+    <div id="right"></div>
+    
+
+    <div id="bannerTop">
+        <div id="bannerImg1"></div>
+        <br /><br />
+        <h1 style="margin-bottom: 0px;">Character Creation Machine!<br /><h2 style="color: #ccc; text-align: center;">- Project 1 -</h2></h1>
+    </div>
+
+    <div id="bannerBottom">
+        <div id="bannerImg2"></div>
+    </div>
+
+    <div id="ads" style="padding: 5px; margin-top: 100px;">
+        <img src="images/hatAd.png" style="background-size:cover; border: outset 5px #69f7ff;" alt="ad" title="ad" width="205px" />
+    </div>
+
+    
+
+    <!-- "more" fixed flyout div -->
+    <div id="more"><span>More</span></div>
+    <div id="moreForm">
+        <div id="moreClose" style="position:relative; text-align:center; width:20px; left:350px; top:20px;
+                                      border:2px solid black; padding:1px; color:black; cursor:pointer;">X</div>
+        
+        <div id="nav" style="position:relative; width:325px; left:45px; top:5px; padding:1px; text-align:center;">
+            <h3 style="padding:10px;">Try Out More Creation Machines!</h3>
+            <h5>Pet Creation</h5>
+            <h5>Sandwich Creation</h5>
+            <h5>Car Creation</h5>
+            <h5>House Creation</h5>
+            <h5>Bouquet Creation</h5>
+    </div>
+    </div>
+    <!-- end "more" fixed flyout div -->
+
+
+    <div id="mainContent">
+        <div id="midTop" style="text-align:center;">
+            <h2 style="margin:0px;"><br />Welcome to the Character Creation Machine!</h2>
+            <h4>Navigate through the options below to design your unique character.<br />First, select a character and then choose a hat. When you're ready, reveal your creation at the end!</h4>
+
+        </div> <!--end midTop-->
+
+        <div id="midMain">          
+            <div id="wrapper1">
+                <!-- MAIN SELECT -->
+                <a href="#"><div id="cText" class="hov1"></div></a>
+                <a href="#"><div id="hText" class="hov1"></div></a>
+                <a href="#"><div id="rText" class="hov1"></div></a>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#wrapper1, #cText, #hText, #rText").css("border-radius", "10px");
+                    $("#cText, #hText, #rText").animate({"opacity" : .5}).hover(function() {
+                        $(this).animate({"opacity" : 1});
+                    },  function()  {
+                        $(this).animate({"opacity" : .5});
+                    });
+                });
+            </script>
+
+            <div id="wrapper2">
+                <!-- CREATURE CATEGORY -->
+                <a href="#"><div id="c1" class="hov2"></div></a>
+                <a href="#"><div id="c2" class="hov2"></div></a>
+                <a href="#"><div id="c3" class="hov2"></div></a>
+                <a href="#"><div id="c4" class="hov2"></div></a>
+                <a href="#"><div id="c5" class="hov2"></div></a>
+                <a href="#"><div id="c6" class="hov2"></div></a>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#wrapper2, #c1, #c2, #c3, #c4, #c5, #c6").css("border-radius", "10px");
+                    $("#c1, #c2, #c3, #c4, #c5, #c6").animate({"opacity" : 0.5}).hover(function() {
+                        $(this).animate({"opacity" : 1});
+                    },  function()  {
+                        $(this).animate({"opacity" : 0.5});
+                    });
+                });
+            </script>
+
+
+            <div id="wrapper3">
+                <!-- HAT CATEGORY -->
+                <a href="#"><div id="hat1" class="hov3"></div></a>
+                <a href="#"><div id="hat2" class="hov3"></div></a>
+                <a href="#"><div id="hat3" class="hov3"></div></a>
+                <a href="#"><div id="hat4" class="hov3"></div></a>
+                <a href="#"><div id="hat5" class="hov3"></div></a>
+                <a href="#"><div id="hat6" class="hov3"></div></a>
+            </div>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#wrapper2, #hat1, #hat2, #hat3, #hat4, #hat5, #hat6").css("border-radius", "10px");
+                    $("#hat1, #hat2, #hat3, #hat4, #hat5, #hat6").animate({"opacity" : 0.5}).hover(function() {
+                        $(this).animate({"opacity" : 1});
+                    },  function()  {
+                        $(this).animate({"opacity" : 0.5});
+                    });
+                });
+            </script>
+
+
+            <div id="slider">
+
+                <div id="congrats" style="text-align: center; color: black; font-size:20px;">
+                    <h2><br />Congratulations!</h2>
+                    <h2>Look at your beautiful new character!</h2>
+                </div>
+
+                <div id="layered"></div>
+
+                <section id="home">
+                    <div id="container" class="container">
+                        <div class="image_wrapper">
+                            <img id="pic1" src="images/background1.jpg" class="slide-image" alt=""/>
+                            <img id="pic2" src="images/background2.jpg" class="slide-image" alt=""/>
+                            <img id="pic3" src="images/background3.png" class="slide-image" alt=""/>
+                            <img id="pic4" src="images/background4.png" class="slide-image" alt=""/>
+                            <img id="pic5" src="images/background5.jpg" class="slide-image" alt=""/>
+                            <img id="pic6" src="images/background6.jpg" class="slide-image" alt=""/>
+                        </div><!-- goes with image wrapper -->
+
+                        <div class="next"></div>
+                        <div class="prev"></div>
+
+                        <ul class="nav" background-size:cover>
+                            <li id="nav1" class="selected"><a class="thumbnav" href="images/background1.jpg" rel="images/thumbs/background1.jpg">Image 1</a></li>
+                            <li id="nav2"><a class="thumbnav" href="images/background2.jpg" rel="images/thumbs/background2.jpg">Image 2</a></li>
+                            <li id="nav3"><a class="thumbnav" href="images/background3.png" rel="images/thumbs/background3.png">Image 3</a></li>
+                            <li id="nav4"><a class="thumbnav" href="images/background4.png" rel="images/thumbs/background4.png">Image 4</a></li>
+                            <li id="nav5"><a class="thumbnav" href="images/background5.jpg" rel="images/thumbs/background5.jpg">Image 5</a></li>
+                            <li id="nav6"><a class="thumbnav" href="images/background6.jpg" rel="images/thumbs/background6.jpg">Image 6</a></li>
+                            <li class="preview">
+                                    <div class="preview_wrapper">
+                                        <!-- thumbnail -->
+                                    </div>
+                                    <!-- little triangle -->
+                                    <span></span>
+                            </li>
+                        </ul>
+                    </div> <!-- end container -->
+                </section>
+                <!-- RESTART BUTTON -->
+                <button onclick="restart()">Try Again!</button>
+            </div> <!-- end slider -->
+            
+
+
+        </div> <!--end midMain-->
+        <div id="midBottom"></div> <!--end midBottom-->
+    </div> <!--end mainContent-->
+
+
+    <!-- Screen View Change Functionality -->
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Show the character selection initially
+            $('#wrapper1').show();
+            $('#wrapper2').hide();
+            $('#wrapper3').hide();
+            $('#slider').hide();
+            
+            //selectedCharacter possible vals: c1, c2, c3, c4, c5, and c6
+            //selectedHat possible vals: hat1, hat2, hat3, hat4, hat5, and hat6
+            sessionStorage.setItem("selectedCharacter", null);
+            sessionStorage.setItem("selectedHat", null);
+
+
+            // Step 1: Character Selection
+            $('#cText').click(function() {
+                $('#wrapper1').hide(); //hide main select
+                $('#wrapper2').show(); //show character selection
+            });
+
+            $('.hov2').click(function() {
+                    sessionStorage.setItem("selectedCharacter", this.id); 
+                    console.log("Character selected:", sessionStorage.getItem("selectedCharacter"));
+                    $('#wrapper1').show(); //hide main select
+                    $('#wrapper2').hide(); //show character selection
+            });
+
+            // Step 2: Hat Selection
+            $('#hText').click(function() {
+                $('#wrapper1').hide(); //hide main select
+                $('#wrapper3').show(); //show hat selection
+            });
+
+            $('.hov3').click(function() {
+                    sessionStorage.setItem("selectedHat", this.id); 
+                    console.log("Hat selected:", sessionStorage.getItem("selectedHat"));
+                    $('#wrapper1').show(); //hide main select
+                    $('#wrapper3').hide(); //show character selection
+            });
+
+            // Step 3: REVEAL
+            $('#rText').click(function() {
+                let selectedCharacter = sessionStorage.getItem("selectedCharacter");
+                let selectedHat = sessionStorage.getItem("selectedHat");
+                console.log("Reveal clicked. Character:", selectedCharacter, "Hat:", selectedHat);
+
+                if ((selectedCharacter != "null") && (selectedHat != "null")) {
+                    $('#wrapper1').hide(); //hide main select
+                    $('#slider').show(); //show reveal selection
+
+                    $('#layered').html(""); //Clears any previous character/hat images
+
+                    //Character 3 and 5 special cases
+                    if ((selectedCharacter == "c3") || (selectedCharacter == "c5")) {
+                        //is character 3 or 5
+                        var bothImg = document.createElement("img");
+                        bothImg.src = "images/"+selectedCharacter+selectedHat+".png";
+                        bothImg.alt = "Selected Character and Hat";
+                        bothImg.classList.add("bothLayered");
+                        console.log("Character with Hat Image URL:", bothImg.src);
+                        document.getElementById('layered').appendChild(bothImg);
+
+                    } else {                    
+                        //All other cases
+                        //Create character image element
+                        var characterImg = document.createElement("img");
+                        characterImg.src = "images/"+selectedCharacter+".png";
+                        characterImg.alt = "Selected Character";
+                        characterImg.classList.add("layeredCharacter");
+                        console.log("Character Image URL:", characterImg.src);
+                
+                        //Create hat image element
+                        var hatImg = document.createElement("img");
+                        hatImg.src = "images/"+selectedHat+".png";
+                        hatImg.alt = "Selected Hat";
+                        hatImg.classList.add("layeredHat");
+                        console.log("Hat Image URL:", hatImg.src);
+
+                        //Append images to the container within the slider
+                        document.getElementById('layered').appendChild(characterImg);
+                        document.getElementById('layered').appendChild(hatImg);
+                    }
+                } else {
+                    alert('Please select your character and hat first!')
+                }
+            });
+        });
+
+        // RESTART BUTTON
+        function restart() {
+            $('#slider').hide(); //hide slider
+            $('#wrapper1').show(); //show main selection
+            
+            sessionStorage.setItem("selectedCharacter", null); 
+            sessionStorage.setItem("selectedHat", null); 
+            
+            console.log("Reset - Character:", sessionStorage.getItem("selectedCharacter"),
+                        "Hat:", sessionStorage.getItem("selectedHat"));
+       
+            // Simulate click on the first thumbnail to reset the slider to the first image
+            $("a.thumbnav[href='images/background1.jpg']").trigger("click");
+            
+        }
+
+    </script>
+
+    <!-- SLIDER FUNCTIONALITY -->
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+          var counter = 1;
+  
+          //display the thumb
+          $("li").animate().hover(function() {
+              $("li.preview").css("display", "block");
+          }, function() {
+              $("li.preview").css("display", "none");
+          }); //end roll over thumb
+  
+  
+          //put thumbnail into box
+          $("a.thumbnav").hover(function(e){
+            var rel = $(this).attr("rel");
+            $("div.preview_wrapper").css("background", "url(" + rel + ") no-repeat center");
+          });
+  
+          var sign = "";
+          var imgNum = 0;
+          var move = 0;
+  
+          $("a.thumbnav").click(function(event) {
+              event.preventDefault();
+  
+              var ref = $(this).attr("href");
+  
+              if(ref.indexOf("1") != -1 )
+                  imgNum = 1;
+              else if(ref.indexOf("2") != -1 )
+                  imgNum = 2;
+              else if(ref.indexOf("3") != -1 )
+                  imgNum = 3;
+              else if(ref.indexOf("4") != -1 )
+                  imgNum = 4;
+              else if(ref.indexOf("5") != -1 )
+                  imgNum = 5;
+              else if(ref.indexOf("6") != -1 )
+                  imgNum = 6;
+  
+            //determine how much to move the images
+            //based on which image was clicked
+              if((counter - imgNum) < 0) {
+                  move = (imgNum - counter) * 650;
+                  sign = "-=";
+              }
+              else {
+                  move = (counter - imgNum) * 650;
+                  sign = "+=";
+              }
+  
+              //move the image
+              $("img.slide-image").animate({
+                  left:sign+move
+              }, 250);            
+  
+              counter = imgNum;
+  
+              $("li.selected").removeClass("selected");
+              $("li#nav"+imgNum).addClass("selected");
+  
+          }); // thumbnav click
+  
+          //move the thumb image over the dot that is being hovered over
+          $("li#nav1").hover(function(e){
+              $("li.preview").css("left", "-34.5px");
+          });
+          $("li#nav2").hover(function(e){
+              $("li.preview").css("left", "-14px");
+          });
+          $("li#nav3").hover(function(e){
+              $("li.preview").css("left", "5px");
+          });
+          $("li#nav4").hover(function(e){
+              $("li.preview").css("left", "24px");
+          });
+          $("li#nav5").hover(function(e){
+              $("li.preview").css("left", "43px");
+          });
+          $("li#nav6").hover(function(e){
+              $("li.preview").css("left", "62px");
+          });
+  
+          //when the right arrow is clicked
+          $("div.next").click(function(e){
+            if (counter == 6) {
+              //boundary case
+              $("img.slide-image").animate({
+                left:"+=" + ((counter-1)*650)
+              }, 50);
+  
+              $("li.selected").removeClass("selected");
+              $("li#nav1").addClass("selected");
+  
+              counter = 1;
+            }
+            else if (counter < 6) {
+              //all other cases
+              $("img.slide-image").animate({
+                left:"-=650"
+              }, 250);
+  
+              $("li.selected").addClass("prevNav");
+              $("li.selected").removeClass("selected");
+              $("li.prevNav").next().addClass("selected");
+              $("li.prevNav").removeClass("prevNav");
+  
+              counter++; // shorthand for counter = counter + 1;
+              } //end else if
+          }); //end right click
+  
+          //when the left arrow is clicked
+          $("div.prev").click(function(e) {
+              if(counter == 1) {
+                  //boundary case
+                  $("img.slide-image").animate({
+                      left:"-=" + (5*650)
+                  }, 50);
+  
+                  $("li.selected").removeClass("selected");
+                  $("#nav6").addClass("selected");
+  
+                  counter = 6;
+              }
+              else if(counter > 1) {
+                  //all other cases
+                  $("img.slide-image").animate({
+                      left:"+=650"
+                  }, 250);
+  
+                  $("li.selected").addClass("prevNav");
+                  $("li.selected").removeClass("selected");
+                  $("li.prevNav").prev().addClass("selected");
+                  $("li.prevNav").removeClass("prevNav");
+  
+                  counter--; // shorthand for counter = counter - 1;
+              } //end else if
+          }); //end left click
+        }); //end document ready
+    </script>
+
+    <!-- "More" Flyout Functionality -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                ////////////////////////////////
+                //"more" fixed side bar
+                ////////////////////////////////
+                //rotate the text
+                $("#more").addClass("rotate");
+
+                //when the window scrolls, prevent the contact div from scrolling
+                $(window).scroll(function (event) {
+                    //add the fixed class to the contact div
+                    $("#ads").addClass("fixed");
+                    $("#more").addClass("fixed");
+                }); //end scroll
+
+                var isShowing = 1; //variable to know if the idv is showing on page
+                
+                $("#more").addClass("rotate"); //rotate the div using CSS class .rotate
+                
+                var ie = $.browser == "msie" && $.browser.version < 7;
+
+                //exclude really old browsers
+                if (!ie) {
+                    $(window).scroll(function(event) {
+                        $("#more").addClass("fixed");
+                    }); //end scroll
+                } // end if
+
+                //when "more" is clicked
+                $("#more").click(function(e) {
+                    e.preventDefault();
+
+                    if (isShowing%2) {
+                        //executes every time isShowing is an odd number
+                        //bring the div onto the screen, into view
+                        $("#more").animate({
+                            left:"+=380"
+                        }, 700);
+                        $("#moreForm").animate({
+                            left:"+=380"
+                        }, 700);
+
+                        $("#more").addClass("fixed");
+                        $("#moreForm").addClass("fixed");
+
+                        $("#more").css("background-color", "rgba(254, 211, 255, 0.95);");
+
+                        isShowing++; //ass 1 to isShowing: isShowing = isShowing + 1
+                    } else {
+                       //executes every time isShowing is an even number
+                       //move it off of the screen, out of view 
+                       $("#more").animate({
+                            left:"-=380"
+                        }, 700);
+                        $("#moreForm").animate({
+                            left:"-=380"
+                        }, 700);
+
+                        $("#more").css("background-color","rgba(254, 211, 255, 0.75);");
+
+                        isShowing++ //add 1 to isShowing: isShowing = isShowing + 1
+                    } //end if else for the modulus operator
+
+                }); //end "more" click
+
+                //when the X is clicked
+                $("#moreClose").click(function(e) {
+                    e.preventDefault();
+
+                    $("#more").animate({
+                            left:"-=380"
+                    }, 700);
+                    $("#moreForm").animate({
+                        left:"-=380"
+                    }, 700);
+
+                    $("#more").css("background-color","rgba(254, 211, 255, 0.75);");
+
+                    isShowing++; //add 1 to isShowing: isShowing = isShowing + 1
+
+                }); //end close X click
+
+                ////////////////////////////////
+                //end "more""fixed side bar
+                ////////////////////////////////
+            });
+        </script>
+
+    <!-- attaches sections -->
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $("#top").html( $("#bannerTop") );
+            $("#bottom").html( $("#bannerBottom") );
+
+            $("#left").html( $("#more") );
+            $("#right").html( $("#ads") );
+            $("#middle").html( $("#mainContent") );
+            
+        }); //end document ready
+    </script>
+
+</body>
+</html>
