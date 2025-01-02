@@ -3,6 +3,7 @@
 This repository showcases my web development projects I completed in school, demonstrating a range of essential front-end development skills, including HTML, CSS, and JavaScript. Each folder represents an assignment or project, and the descriptions below highlight the key features and skills demonstrated.
 
 
+
 ## Assignments
 
 ### Assign01: Basic Webpages
@@ -44,7 +45,7 @@ This repository showcases my web development projects I completed in school, dem
 * **Skills:** Positioning, animations, and user interaction.
 
 
-### Assign05: Sliding Gallerie
+### Assign05: Sliding Galleries
 * **Pages:**
     * Sliding Image Galleries
 * **Features:**
@@ -73,3 +74,24 @@ This repository showcases my web development projects I completed in school, dem
   * Dynamic content display based on selection.
 * **Skills:** JavaScript animations and DOM manipulation.
 
+
+## Projects
+
+### Project1: Character Creation Machine
+* **Features:**
+   * Choose a creature and hat, displayed on a selectable background.
+   * Interactive hovers, fixed elements, and a sliding gallery.
+   * Reset functionality.
+* **Skills:** Advanced JavaScript for interactive elements, combining hover and gallery techniques.
+
+
+### Project2: Wack-a-Star Game
+* **Features:**
+   * Whack-a-mole style game with stars.
+   * Timer, score counter, and reset button.
+   * Game start, playing, and reset animations
+* **Skills:** Game mechanics, advanced JavaScript animations, and event handling.
+
+---
+
+This portfolio demonstrates my ability to create functional and visually appealing web projects. It highlights skills in front-end development, interactivity, responsive design, and problem-solving. Feel free to explore the repository to see detailed code and examples of my work.
