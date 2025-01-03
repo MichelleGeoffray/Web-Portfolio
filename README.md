@@ -85,7 +85,7 @@ This repository showcases my web development projects I completed in school, dem
 * **Skills:** Advanced JavaScript for interactive elements, combining hover and gallery techniques.
 
 
-### Project2: Wack-a-Star Game
+### Project2: Whack-a-Star Game
 * **Features:**
    * Whack-a-mole style game with stars.
    * Timer, score counter, and reset button.
